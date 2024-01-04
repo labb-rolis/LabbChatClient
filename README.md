@@ -2,6 +2,9 @@
 
 Chat client to interact with the LCH (Labb Chat Hook) using websockets.
 
+# Prerequisites
+The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/LabbChatHook/ 
+
 # How to use it.
 
 1. Create an account on render.com (or any other 'free' hosting platform)
