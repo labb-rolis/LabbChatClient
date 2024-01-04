@@ -1,31 +1,18 @@
 .App {
   text-align: center;
+  height:100%;
+  width:100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+.sticky-header {
+  position: fixed;
+  font-weight: bold;
+  top: 0;
+  width: 100%;
+  height: 10%;
+  padding: 0px;
+  background-color: #061d3b; /* Set your desired background color */
+  z-index: 1000; /* Set a high z-index to ensure it stays on top of other elements */
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +23,180 @@
     transform: rotate(360deg);
   }
 }
+/* src/App.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+
+.logo {
+  max-width: auto;
+  max-height: 50%;
+  padding: 20px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.chat-window {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  width: 75%;
+  height:50%;
+}
+
+.user {
+  background-color: #dcf8c6;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 8px;
+  align-self: flex-end;
+  max-width: 70%;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.author {
+  font-size: 8px;
+  color: gray;
+  margin-bottom: 8px;
+}
+
+.bubble {
+  --r: 25px; /* the radius */
+  --t: 30px; /* the size of the tail */
+  
+  padding: 20px;
+  -webkit-mask: 
+    radial-gradient(var(--t) at var(--_d) 0,#0000 98%,#000 102%) 
+      var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat,
+    conic-gradient(at var(--r) var(--r),#000 75%,#0000 0) 
+      calc(var(--r)/-2) calc(var(--r)/-2) padding-box, 
+    radial-gradient(50% 50%,#000 98%,#0000 101%) 
+      0 0/var(--r) var(--r) space padding-box;
+  margin: 10px;
+}
+.left {
+  --_d: 0%;
+  border-left: var(--t) solid #0000;
+  background: #44c2fd border-box;
+  color: white;
+  margin-right: var(--t);
+  place-self: start;
+  text-align: left;
+}
+.right {
+  --_d: 100%;
+  border-right: var(--t) solid #0000;
+  background: #f4f6fa border-box;
+  color: black;
+  margin-left: var(--t);
+  place-self: end;
+  text-align: right;
+}
+
+.input-container {
+  display: flex;
+  width: 75%;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+input {
+  flex: 1;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+}
+
+button {
+  background-color: #44c2fd;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  height: 50px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;  
+}
+
+button:hover {
+  background-color: #061d3b;
+}
+
+.menu-button {
+  /* Add your existing styles for the menu button */
+  background-color: #44c2fd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.radio-button {
+  /* Styles to mimic a radio button */
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.radio-button::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid;
+  background-color: #061d3b;
+  box-sizing: border-box;
+}
+
+.radio-button.selected::before {
+  background-color: #44c2fd;
+}
+
+.action-bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.end-conversation {
+  margin-bottom: 10px;
+  text-align: right;
+  margin-left:auto;
+}
+
+.customer-selection {
+  margin-bottom: 10px;
+  text-align: left;
+  margin-right:auto;
+  display: flex;
+  align-items: center;
+}
+

@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# LCC - Labb Chat Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Chat client to interact with the LCH (Labb Chat Hook) using websockets.
 
-## Available Scripts
+# How to use it.
 
-In the project directory, you can run:
+1. Create an account on render.com (or any other 'free' hosting platform)
+2. Create a webservice and select `Build and deploy from a Git repository`
+3. Paste this repo URL and go to the next step
+4. Fill in the following details:
+- Give it a name
+- Select a region
+- Select the `main` branch
+- leave `Root directory` empty
+- Runtime should be `Node`
+- Build command should be `yarn`
+- Start command should be `yarn start`
+- Select the `Free` option
+5. Pay special attention to `Environment variables`. This can easily be changed later on when the service is setup and deployed. Once it's changed, the service will automatically restart and the new environment variables will be in place.
+- Key: LCH_URL - Value of the URL to the LCH (Labb Chat Hook)
 
-### `npm start`
+# What does it do
+The application is responsible for handling the chat functionality with LCH using WebSockets.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A WebSocket connection is established with the server using the `io` function from `socket.io-client`. The URL for the server is retrieved from the environment variables.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The `handleOptionChange`, `handleKeyDown`, and `handleRadioButtonClick` functions are event handlers for different user interactions. The `handleOptionChange` function is called when the selected option in the dropdown changes. The `handleKeyDown` function is called when enter is pressed in the input field. If the key is 'Enter', it sends the message. The `handleRadioButtonClick` function is called when a radio button is clicked.
 
-### `npm test`
+The `useEffect` hooks are used to perform side effects in the component. The first `useEffect` is used to automatically scroll the chat window to the bottom whenever a new message is added to the chat. The second `useEffect` is used to handle incoming server messages.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The `sendMessageToServer` function is a general function for sending messages, while the other functions are for specific types of messages that will use this function to post it back to the server via the socket.
 
-### `npm run build`
+- `sendMessage` is used to form a text/chat message
+- `postBack` is used to reply and select a menu item (work queue selection).
+- `endConversation` is used when the conversation is ended by the client
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Finally, the `return` statement renders the JSX for the component. It includes the dropdown for selecting a customer, the chat window, and the input field for sending messages. The chat window maps over the `chat` state variable to render each message. If the `typing` state variable is true, it also renders a typing indicator.
