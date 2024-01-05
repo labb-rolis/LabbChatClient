@@ -8,7 +8,7 @@ The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/Lab
 # How to use it.
 
 1. Create an account on render.com (or any other 'free' hosting platform)
-2. Create a webservice and select `Build and deploy from a Git repository`
+2. Create a new static site and select `Build and deploy from a Git repository`
 3. Paste this repo URL and go to the next step
 4. Fill in the following details:
 - Give it a name
