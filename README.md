@@ -15,9 +15,8 @@ The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/Lab
 - Select a region
 - Select the `main` branch
 - leave `Root directory` empty
-- Runtime should be `Node`
-- Build command should be `yarn`
-- Start command should be `yarn start`
+- Build command should be `yarn build`
+- Publish directory should be `build`
 - Select the `Free` option
 5. Pay special attention to `Environment variables`. This can easily be changed later on when the service is setup and deployed. Once it's changed, the service will automatically restart and the new environment variables will be in place.
 - Key: LCH_URL - Value of the URL to the LCH (Labb Chat Hook)
