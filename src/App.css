@@ -15,22 +15,12 @@
   z-index: 1000; /* Set a high z-index to ensure it stays on top of other elements */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* src/App.css */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
 }
-
 
 .logo {
   max-width: auto;
@@ -71,42 +61,37 @@ body {
 }
 
 .author {
-  font-size: 8px;
-  color: gray;
+  font-size: 12px;
+  color: #061d3b;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
 .bubble {
-  --r: 25px; /* the radius */
   --t: 30px; /* the size of the tail */
-  
-  padding: 20px;
-  -webkit-mask: 
-    radial-gradient(var(--t) at var(--_d) 0,#0000 98%,#000 102%) 
-      var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat,
-    conic-gradient(at var(--r) var(--r),#000 75%,#0000 0) 
-      calc(var(--r)/-2) calc(var(--r)/-2) padding-box, 
-    radial-gradient(50% 50%,#000 98%,#0000 101%) 
-      0 0/var(--r) var(--r) space padding-box;
-  margin: 10px;
+  padding: 10px;
+  margin: 20px;
 }
+
 .left {
   --_d: 0%;
   border-left: var(--t) solid #0000;
   background: #44c2fd border-box;
   color: white;
-  margin-right: var(--t);
+  margin-right: 25%;
   place-self: start;
   text-align: left;
+  border-radius: 20px 20px 20px 5px;
 }
 .right {
   --_d: 100%;
   border-right: var(--t) solid #0000;
   background: #f4f6fa border-box;
   color: black;
-  margin-left: var(--t);
+  margin-left: 25%;
   place-self: end;
   text-align: right;
+  border-radius: 20px 20px 5px 20px;
 }
 
 .input-container {
@@ -144,10 +129,13 @@ button:hover {
   background-color: #44c2fd;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
   margin: 5px;
+  padding: 10px;
   font-size: 14px;
+  width: auto;
+  max-width:75%;
 }
 
 .radio-button {
@@ -169,12 +157,12 @@ button:hover {
   height: 20px;
   border-radius: 50%;
   border: 2px solid;
-  background-color: #061d3b;
+  background-color: #f4f6fa;
   box-sizing: border-box;
 }
 
 .radio-button.selected::before {
-  background-color: #44c2fd;
+  background-color: #061d3b;
 }
 
 .action-bar{

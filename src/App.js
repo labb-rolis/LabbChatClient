@@ -7,12 +7,14 @@ import Logo from './assets/Labb.png';
 
 function App() {
   // Set up the WebSocket connection
-  const socket = io(process.env.LCH_URL);
+  const socket = io('https://krabhook.onrender.com');
 
   // Set options for customer dropdown
   const options = [
     { value: 'ABC1234581', label: 'John Brown' },
     { value: '', label: 'Unauthenticated person' },
+    { value: 'others', label: 'Other' },
+
   ];
 
   // State declarations
@@ -20,13 +22,11 @@ function App() {
   const [chat, setChat] = useState([]);
   const [typing, setTyping] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [customer, setCustomer] = useState(options[0].value);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const chatWindowRef = useRef();
 
   // Event handlers
   const handleOptionChange = async (option) => {
-    setCustomer(option.value);
     setSelectedOption(option);
     await endConversation();
   };
@@ -85,8 +85,8 @@ function App() {
   const sendMessageToServer = async (type, text, isPostback) => {
     const message = {
       type,
-      customer_id: customer,
-      // customer_name: 'David Smales',
+      customer_id: selectedOption.value,
+      customer_name: selectedOption.label,
       message_id: Date.now(),
       text: [text],
       postback: isPostback ? text : undefined,
@@ -98,7 +98,7 @@ function App() {
       });
   
       if (type === 'text') {
-        setChat((prevChat) => [...prevChat, { text, sender: 'user', type: 'text', author: customer }]);
+        setChat((prevChat) => [...prevChat, { text, sender: 'user', type: 'text', author: selectedOption.label }]);
         setInput('');
       }
     } catch (error) {
@@ -141,12 +141,13 @@ function App() {
         {chat.map((message, index) => (
           message.type==='text' ? (
           <div key={index} className={message.sender === 'server' ? 'bubble right' : 'bubble left'}>
+            <div className='author'>{message.author}</div>
             {message.text}
-            <div className='author'>{message.csr_name}</div>
           </div>
           ) : message.type==='buttons' ? (
           <div key={index} className={message.sender === 'server' ? 'bubble right' : 'bubble left'}>
             {message.choices.map((choice, index) => (
+              <div className='menu-container'>
               <button
               key={index}
               className={`menu-button radio-button ${selectedIndex === index ? 'selected' : ''}`}
@@ -154,10 +155,12 @@ function App() {
                 postBack(choice.payload);
                 handleRadioButtonClick(index);
               }}
-            >
-              {choice.text}
-            </button>
-            ))}
+              >
+                {choice.text}
+              </button>
+              </div>
+              ))}
+              
             </div>
           ) : null
         ))}
