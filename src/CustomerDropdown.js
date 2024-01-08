@@ -12,6 +12,7 @@ const CustomerDropdown = ({ handleOptionChange, selectedOption, options }) => {
       boxShadow: 'none',
       padding: '7px',
       marginRight: '10px',
+      width: '250px',
     }),
     menu: (base) => ({
       ...base,

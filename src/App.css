@@ -15,6 +15,13 @@
   z-index: 1000; /* Set a high z-index to ensure it stays on top of other elements */
 }
 
+.custom-customer-input{
+  display: flex;
+  flex-direction: column;
+  width:75%;
+  margin-bottom: 20px;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -76,8 +83,8 @@ body {
 .left {
   --_d: 0%;
   border-left: var(--t) solid #0000;
-  background: #44c2fd border-box;
-  color: white;
+  background: #f4f6fa border-box;
+  color: black;
   margin-right: 25%;
   place-self: start;
   text-align: left;
@@ -86,8 +93,8 @@ body {
 .right {
   --_d: 100%;
   border-right: var(--t) solid #0000;
-  background: #f4f6fa border-box;
-  color: black;
+  background: #44c2fd border-box;
+  color: white;
   margin-left: 25%;
   place-self: end;
   text-align: right;
@@ -125,17 +132,16 @@ button:hover {
 }
 
 .menu-button {
-  /* Add your existing styles for the menu button */
-  background-color: #44c2fd;
+  display: flex;
+  background-color: #061d3b;
   color: #fff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   margin: 5px;
-  padding: 10px;
-  font-size: 14px;
-  width: auto;
-  max-width:75%;
+  padding: 5px;
+  font-size: 16px;
+
 }
 
 .radio-button {
@@ -144,7 +150,6 @@ button:hover {
   position: relative;
   padding-left: 30px;
   cursor: pointer;
-  margin-left: 5px;
 }
 
 .radio-button::before {

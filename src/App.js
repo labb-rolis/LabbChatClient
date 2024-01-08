@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import './App.css';
-import Typing from './typing-indicator/Typing.js';
+import Typing from './TypingIndicator/Typing.js';
 import CustomerDropdown from './CustomerDropdown.js';
 import Logo from './assets/Labb.png';
+import CustomCustomerInput from './CustomCustomerInput/CustomCustomerInput.js';
 
 function App() {
   // Set up the WebSocket connection
-  const socket = io('https://krabhook.onrender.com');
+  const socket = io(process.env.LCH_URL);
 
   // Set options for customer dropdown
   const options = [
     { value: 'ABC1234581', label: 'John Brown' },
     { value: '', label: 'Unauthenticated person' },
-    { value: 'others', label: 'Other' },
+    { value: 'other', label: 'Other' },
 
   ];
 
@@ -23,12 +24,25 @@ function App() {
   const [typing, setTyping] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [showCustomerInput, setShowCustomerInput] = useState(false);
   const chatWindowRef = useRef();
 
   // Event handlers
   const handleOptionChange = async (option) => {
-    setSelectedOption(option);
+    if (option.value === 'other') {
+      setShowCustomerInput(true);
+      setSelectedOption(option);
+    } else {
+      setShowCustomerInput(false);
+      await endConversation();
+      setSelectedOption(option);
+    }
+  };
+
+  const handleCustomCustomer = async (customerNumber, customerName) => {
+    setShowCustomerInput(false);
     await endConversation();
+    setSelectedOption({ value: customerNumber, label: customerName });
   };
   
   const handleKeyDown = (e) => {
@@ -97,7 +111,7 @@ function App() {
         console.log('Server acknowledgment:', acknowledgment);
       });
   
-      if (type === 'text') {
+      if (type === 'text' && !isPostback) {
         setChat((prevChat) => [...prevChat, { text, sender: 'user', type: 'text', author: selectedOption.label }]);
         setInput('');
       }
@@ -137,15 +151,20 @@ function App() {
         <button onClick={() => endConversation()}>End conversation</button> 
       </div>
       </div>
+      {showCustomerInput ? (
+      <div className='custom-customer-input'>
+        <CustomCustomerInput options={options} selectedOption={selectedOption} handleCustomCustomer={handleCustomCustomer}/>
+      </div>)
+      : null}
       <div ref={chatWindowRef} className='chat-window'>
         {chat.map((message, index) => (
           message.type==='text' ? (
-          <div key={index} className={message.sender === 'server' ? 'bubble right' : 'bubble left'}>
+          <div key={index} className={message.sender === 'server' ? 'bubble left' : 'bubble right'}>
             <div className='author'>{message.author}</div>
             {message.text}
           </div>
           ) : message.type==='buttons' ? (
-          <div key={index} className={message.sender === 'server' ? 'bubble right' : 'bubble left'}>
+          <div key={index} className={message.sender === 'server' ? 'bubble left' : 'bubble right'}>
             {message.choices.map((choice, index) => (
               <div className='menu-container'>
               <button
