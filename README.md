@@ -7,19 +7,12 @@ The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/Lab
 
 # How to use it.
 
-1. Create an account on render.com (or any other 'free' hosting platform)
-2. Create a new static site and select `Build and deploy from a Git repository`
-3. Paste this repo URL and go to the next step
-4. Fill in the following details:
-- Give it a name
-- Select a region
-- Select the `main` branch
-- leave `Root directory` empty
-- Build command should be `yarn build`
-- Publish directory should be `build`
-- Select the `Free` option
-5. Pay special attention to `Environment variables`. This can easily be changed later on when the service is setup and deployed. Once it's changed, the service will automatically restart and the new environment variables will be in place.
-- Key: LCH_URL - Value of the URL to the LCH (Labb Chat Hook)
+1. Install/update Node
+2. 
+- On Mac/Linux run the following command in a terminal `LCH_URL=https://link-to-your-hook npm start`
+- On Windows `set LCH_URL=https://link-to-your-hook && npm start`
+3. Update your Labb Chat Hook on render to set the Allowed Origin. For example: `http://localhost:3000`
+
 
 # What does it do
 The application is responsible for handling the chat functionality with LCH using WebSockets.
