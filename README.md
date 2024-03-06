@@ -12,7 +12,7 @@ The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/Lab
 3. Start with using the following command
 - On Mac/Linux run the following command in a terminal `LCH_URL=https://link-to-your-hook npm start`
 - On Windows (cmd.exe) `set LCH_URL=https://link-to-your-hook && npm start`
-- On Windows (Powershell) ($env:LCH_URL = "https://link-to-your-hook") -and (npm start)
+- On Windows (Powershell) `($env:LCH_URL = "https://link-to-your-hook") -and (npm start)`
 
 # What does it do
 The application is responsible for handling the chat functionality with LCH using WebSockets.
