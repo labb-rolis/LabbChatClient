@@ -8,10 +8,10 @@ The `Labb Chat Hook` should be deployed first. https://github.com/labb-rolis/Lab
 # How to use it.
 
 1. Install/update Node
-2. 
+2. Clone repo and run npm install
+3. Start with using the following command
 - On Mac/Linux run the following command in a terminal `LCH_URL=https://link-to-your-hook npm start`
 - On Windows `set LCH_URL=https://link-to-your-hook && npm start`
-3. Update your Labb Chat Hook on render to set the Allowed Origin. For example: `http://localhost:3000`
 
 
 # What does it do
